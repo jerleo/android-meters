@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My Meters</string>
+    <string name="average">Average Consumption</string>
+    <string name="balance">Balance</string>
+    <string name="begin">Begin</string>
+    <string name="bill">Bill</string>
+    <string name="bills">Bills</string>
+    <string name="cancel">Cancel</string>
+    <string name="change">Change</string>
+    <string name="chart">Chart</string>
+    <string name="confirm_import">Existing entries will be replaced by import. Continue?</string>
+    <string name="costs">Operating Costs</string>
+    <string name="delete">Delete</string>
+    <string name="delete_message">Entry will be deleted</string>
+    <string name="description">Description</string>
+    <string name="export_failure">Export failed</string>
+    <string name="export_success">Export succeeded</string>
+    <string name="importing">Importing data …</string>
+    <string name="import_success">Import succeeded</string>
+    <string name="import_title">Import</string>
+    <string name="menu_action_export">Export</string>
+    <string name="menu_action_import">Import</string>
+    <string name="menu_action_new_bill">New Bill</string>
+    <string name="menu_action_new_meter">New Meter</string>
+    <string name="menu_add">Add</string>
+    <string name="meter_count">Meter Count</string>
+    <string name="meter">Meter</string>
+    <string name="meter_name">Meter Name</string>
+    <string name="meter_number">Meter Number</string>
+    <string name="meters">Meters</string>
+    <string name="meter_unit">Meter Unit</string>
+    <string name="minus_1000">-1000</string>
+    <string name="minus_100">-100</string>
+    <string name="minus_10">-10</string>
+    <string name="minus_1">-1</string>
+    <string name="missing_entries">Missing entries</string>
+    <string name="monthly_fee">Monthly Fee</string>
+    <string name="monthly_fees">Monthly Fees</string>
+    <string name="monthly_payment">Monthly Payment</string>
+    <string name="monthly_payments">Monthly Payments</string>
+    <string name="new_reading">New Reading</string>
+    <string name="none">None</string>
+    <string name="ok">OK</string>
+    <string name="plus_1000">+1000</string>
+    <string name="plus_100">+100</string>
+    <string name="plus_10">+10</string>
+    <string name="plus_1">+1</string>
+    <string name="prior_meter">Prior Meter</string>
+    <string name="reading_date">Reading Date</string>
+    <string name="reading">Reading</string>
+    <string name="readings">Readings</string>
+    <string name="sample_costs">728.23 $</string>
+    <string name="sample_count">12,345 kWh</string>
+    <string name="sample_date">MM/DD/YYYY</string>
+    <string name="sample_description">Heating</string>
+    <string name="sample_fee">7.89 $</string>
+    <string name="sample_meter">123 456 789</string>
+    <string name="sample_payment">140 $</string>
+    <string name="sample_price">0.2275 $/kWh</string>
+    <string name="sample_unit">kWh</string>
+    <string name="save">Save</string>
+    <string name="tariffs">Tariffs</string>
+    <string name="tariff">Tariff</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="valid_from">Valid From</string>
+    <string name="zero" translatable="false">0</string>
+
+    <string-array name="meter_units" translatable="false">
+        <item>kWh</item>
+        <item>m³</item>
+    </string-array>
+
+</resources>

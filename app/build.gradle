@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 24
+    buildToolsVersion '24.0.0'
+
+    defaultConfig {
+        applicationId "de.jerleo.android"
+        minSdkVersion 21
+        targetSdkVersion 24
+
+//        jackOptions {
+//            enabled true
+//        }
+    }
+
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:design:24.0.0'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
+}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/meter_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:id="@+id/meter_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dip"
+        android:text="@string/sample_description"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <TextView
+        android:id="@+id/meter_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/meter_name"
+        android:layout_margin="5dip"
+        android:layout_toEndOf="@id/meter_name"
+        android:text="@string/sample_meter"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="RelativeOverlap"/>
+
+    <TextView
+        android:id="@+id/reading_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/meter_name"
+        android:layout_marginStart="10dip"
+        android:text="@string/reading_date"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/meter_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/meter_name"
+        android:layout_marginStart="10dip"
+        android:layout_toEndOf="@+id/reading_date"
+        android:text="@string/sample_date"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/meter_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/meter_date"
+        android:layout_below="@+id/meter_date"
+        android:text="@string/sample_count"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/meter_date"
+        android:layout_marginStart="10dip"
+        android:text="@string/meter_count"/>
+
+    <ImageButton
+        android:id="@+id/more_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:background="@drawable/highlight"
+        android:contentDescription="@string/readings"
+        android:focusable="false"
+        android:src="@drawable/ic_list"/>
+
+    <ImageButton
+        android:id="@+id/chart_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/more_button"
+        android:background="@drawable/highlight"
+        android:contentDescription="@string/chart"
+        android:focusable="false"
+        android:src="@drawable/ic_timeline"/>
+
+</RelativeLayout>

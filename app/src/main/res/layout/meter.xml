@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TableRow
+        android:id="@+id/button_row"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="@string/cancel"/>
+
+        <Button
+            android:id="@+id/save"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="@string/save"/>
+
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/button_row">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/meter_name"
+                android:text="@string/meter_name"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+            <EditText
+                android:id="@id/meter_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/meter_number"
+                android:text="@string/meter_number"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+            <EditText
+                android:id="@id/meter_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/meter_unit"
+                android:text="@string/meter_unit"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+            <Spinner
+                android:id="@id/meter_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/meter_units"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/prior_meter"
+                android:text="@string/prior_meter"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+            <Spinner
+                android:id="@id/prior_meter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

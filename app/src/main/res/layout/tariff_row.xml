@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:id="@+id/tariff_row"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:id="@+id/valid_from"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:layout_weight="2"
+        android:gravity="start"
+        android:inputType="text"
+        android:text="@string/sample_date"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="TextViewEdits"/>
+
+    <TextView
+        android:id="@+id/monthly_fee"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:text="@string/sample_fee"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <TextView
+        android:id="@+id/unit_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:layout_weight="2"
+        android:gravity="end"
+        android:inputType="text"
+        android:text="@string/sample_price"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="TextViewEdits"/>
+
+    <TextView
+        android:id="@+id/payment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:inputType="text"
+        android:text="@string/sample_payment"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:ignore="TextViewEdits"/>
+
+</TableRow>
