@@ -1,7 +1,6 @@
 package de.jerleo.android;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -9,6 +8,8 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TableLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -100,12 +101,12 @@ public class BillActivity extends FragmentActivity implements OnClickListener,
         nf.setMaximumFractionDigits(5);
         nf.setMinimumFractionDigits(2);
 
-        description = (TextView) findViewById(R.id.description);
-        DatePicker datePicker = (DatePicker) findViewById(R.id.begin);
-        meterList = (TableLayout) findViewById(R.id.meter_list);
+        description = findViewById(R.id.description);
+        DatePicker datePicker = findViewById(R.id.begin);
+        meterList = findViewById(R.id.meter_list);
 
-        Button save = (Button) findViewById(R.id.save);
-        Button cancel = (Button) findViewById(R.id.cancel);
+        Button save = findViewById(R.id.save);
+        Button cancel = findViewById(R.id.cancel);
 
         save.setOnClickListener(this);
         cancel.setOnClickListener(this);

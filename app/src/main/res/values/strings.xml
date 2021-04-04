@@ -15,7 +15,7 @@
     <string name="delete">Delete</string>
     <string name="delete_message">Entry will be deleted</string>
     <string name="description">Description</string>
-    <string name="export_failure">Export failed</string>
+    <string name="exporting">Exporting data …</string>
     <string name="export_success">Export succeeded</string>
     <string name="importing">Importing data …</string>
     <string name="import_success">Import succeeded</string>

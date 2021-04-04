@@ -36,13 +36,13 @@ class BillAdapter extends ArrayAdapter<Bill> {
             row = inflater.inflate(R.layout.bill_row, parent, false);
             final ViewHolder holder = new ViewHolder();
 
-            holder.description = (TextView) row.findViewById(R.id.description);
-            holder.begin = (TextView) row.findViewById(R.id.begin);
-            holder.end = (TextView) row.findViewById(R.id.end);
-            holder.fees = (TextView) row.findViewById(R.id.fees);
-            holder.costs = (TextView) row.findViewById(R.id.costs);
-            holder.payments = (TextView) row.findViewById(R.id.payments);
-            holder.balance = (TextView) row.findViewById(R.id.balance);
+            holder.description = row.findViewById(R.id.description);
+            holder.begin = row.findViewById(R.id.begin);
+            holder.end = row.findViewById(R.id.end);
+            holder.fees = row.findViewById(R.id.fees);
+            holder.costs = row.findViewById(R.id.costs);
+            holder.payments = row.findViewById(R.id.payments);
+            holder.balance = row.findViewById(R.id.balance);
             holder.textColor = holder.balance.getCurrentTextColor();
 
             row.setTag(holder);
@@ -73,7 +73,6 @@ class BillAdapter extends ArrayAdapter<Bill> {
             holder.balance.setTextColor(holder.textColor);
 
         return row;
-
     }
 
     static class ViewHolder {

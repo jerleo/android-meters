@@ -27,10 +27,8 @@ public class ReadingList extends ListActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.delete:
-                delete();
-                break;
+        if (item.getItemId() == R.id.delete) {
+            delete();
         }
         return super.onContextItemSelected(item);
     }

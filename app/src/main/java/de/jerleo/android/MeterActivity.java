@@ -1,7 +1,6 @@
 package de.jerleo.android;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,12 +104,12 @@ public class MeterActivity extends FragmentActivity implements OnClickListener {
         setContentView(R.layout.meter);
         setTitle(R.string.meter);
 
-        number = (TextView) findViewById(R.id.meter_number);
-        name = (TextView) findViewById(R.id.meter_name);
-        unit = (Spinner) findViewById(R.id.meter_unit);
-        prior = (Spinner) findViewById(R.id.prior_meter);
-        save = (Button) findViewById(R.id.save);
-        Button cancel = (Button) findViewById(R.id.cancel);
+        number = findViewById(R.id.meter_number);
+        name = findViewById(R.id.meter_name);
+        unit = findViewById(R.id.meter_unit);
+        prior = findViewById(R.id.prior_meter);
+        save = findViewById(R.id.save);
+        Button cancel = findViewById(R.id.cancel);
 
         boolean update = false;
 

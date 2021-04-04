@@ -74,10 +74,8 @@ public class TariffList extends ListActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.action_new_tariff:
-                create();
-                break;
+        if (item.getItemId() == R.id.action_new_tariff) {
+            create();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -137,7 +135,9 @@ public class TariffList extends ListActivity {
         registerForContextMenu(listView);
 
         final Bundle bundle = this.getIntent().getExtras();
-        meterPosition = bundle.getInt("meter");
+        if (bundle != null) {
+            meterPosition = bundle.getInt("meter");
+        }
         meter = MainActivity.getHome().getMeter(meterPosition);
         List<Tariff> tariffs = meter.getTariffs();
 

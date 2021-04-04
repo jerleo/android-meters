@@ -10,8 +10,7 @@ import de.jerleo.database.DatabaseColumn.DataType;
 
 import static android.provider.BaseColumns._ID;
 
-@SuppressWarnings("ALL")
-abstract class DatabaseTable {
+abstract public class DatabaseTable {
 
     final Database database;
 
@@ -160,5 +159,4 @@ abstract class DatabaseTable {
     protected abstract ContentValues getValues(Object object, boolean forUpdate);
 
     protected abstract String getWhereClause(Object object);
-
 }

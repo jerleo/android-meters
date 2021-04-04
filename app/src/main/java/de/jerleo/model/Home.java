@@ -1,24 +1,23 @@
 package de.jerleo.model;
 
-import android.support.annotation.Nullable;
 import android.util.JsonReader;
 import android.util.JsonWriter;
 
-import java.io.File;
-import java.io.FileInputStream;
+import androidx.annotation.Nullable;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
+import java.io.StringWriter;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import de.jerleo.android.DateHelper;
 import de.jerleo.database.Constants;
 
 public class Home {
 
-    private static final Charset UTF_8 = Charset.forName("UTF-8");
+    private static final Charset UTF_8 = StandardCharsets.UTF_8;
     private List<Bill> bills;
     private List<Meter> meters;
 
@@ -31,9 +30,8 @@ public class Home {
         updateBills();
     }
 
-    public Home(File file) throws IOException {
+    public Home(InputStream stream) throws IOException {
 
-        FileInputStream stream = new FileInputStream(file);
         JsonReader reader = new JsonReader(new InputStreamReader(stream, UTF_8));
 
         reader.beginObject();
@@ -78,35 +76,37 @@ public class Home {
         meters.remove(meter);
     }
 
-    public void exportTo(File externalDir) throws IOException {
+    public String exportJSON() {
 
-        final String dateTime = DateHelper.getTimestamp(DateHelper.getNow());
-        final String filename = String.format("Export_%s.txt", dateTime);
-        final File file = new File(externalDir, filename);
-        final PrintStream stream = new PrintStream(file);
-        final JsonWriter writer = new JsonWriter(new OutputStreamWriter(stream, UTF_8));
+        final StringWriter stream = new StringWriter();
+        final JsonWriter writer = new JsonWriter(stream);
 
-        writer.setIndent("\t");
-        writer.beginObject();
+        try {
+            writer.beginObject();
 
-        if (meters.size() > 0) {
-            writer.name(Constants.METERS);
-            writer.beginArray();
-            for (final Meter meter : meters)
-                meter.export(writer);
-            writer.endArray();
+            if (meters.size() > 0) {
+                writer.name(Constants.METERS);
+                writer.beginArray();
+                for (final Meter meter : meters)
+                    meter.export(writer);
+                writer.endArray();
+            }
+
+            if (bills.size() > 0) {
+                writer.name(Constants.BILLS);
+                writer.beginArray();
+                for (final Bill bill : bills)
+                    bill.exportTo(writer);
+                writer.endArray();
+            }
+
+            writer.endObject();
+            writer.close();
+        } catch (IOException e) {
+            return "";
         }
 
-        if (bills.size() > 0) {
-            writer.name(Constants.BILLS);
-            writer.beginArray();
-            for (final Bill bill : bills)
-                bill.exportTo(writer);
-            writer.endArray();
-        }
-
-        writer.endObject();
-        writer.close();
+        return stream.toString();
     }
 
     public Bill getBill(int position) {

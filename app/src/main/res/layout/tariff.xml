@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TableRow
         android:id="@+id/button_row"
@@ -73,7 +73,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:enabled="false"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="numberDecimal"
+                    android:importantForAutofill="no" />
 
                 <CheckBox
                     android:id="@+id/has_fee"
@@ -101,7 +102,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:enabled="false"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="numberDecimal"
+                    android:importantForAutofill="no" />
 
                 <CheckBox
                     android:id="@+id/has_price"
@@ -128,7 +130,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:enabled="false"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="numberDecimal"
+                    android:importantForAutofill="no" />
 
                 <CheckBox
                     android:id="@+id/has_payment"

@@ -2,7 +2,8 @@ package de.jerleo.android;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import java.text.DateFormat;
 import java.text.ParseException;

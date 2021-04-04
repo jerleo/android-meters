@@ -4,25 +4,28 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.Toast;
 
-import java.io.File;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -34,26 +37,30 @@ import static android.content.DialogInterface.BUTTON_POSITIVE;
 public class MainActivity extends AppCompatActivity implements MeterList.OnMeterChangedListener {
 
     private static final DialogHelper dialogHelper = new DialogHelper();
-    private static final Currency currency = Currency.getInstance(Locale.getDefault());
+
+    private static final int IMPORT_REQUEST = 23;
+    private static final int EXPORT_REQUEST = 42;
 
     private static Home home;
     private static Database database;
 
-    private static MeterList meterList;
-    private static BillList billList;
-
-    private static File externalDir;
-
+    private MeterList meterList;
+    private BillList billList;
     private ViewPager mViewPager;
+
+    private static Currency getCurrency() {
+
+        return Currency.getInstance(Locale.getDefault());
+    }
 
     public static String getCurrencyFormat() {
 
-        return "%." + currency.getDefaultFractionDigits() + "f " + currency.getSymbol();
+        return "%." + getCurrency().getDefaultFractionDigits() + "f " + getCurrency().getSymbol();
     }
 
     public static String getCurrencySymbol() {
 
-        return currency.getSymbol();
+        return getCurrency().getSymbol();
     }
 
     public static Home getHome() {
@@ -72,21 +79,29 @@ public class MainActivity extends AppCompatActivity implements MeterList.OnMeter
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK)
-            onMeterChanged();
+
+        if (resultCode != RESULT_OK)
+            return;
+
+        switch (requestCode) {
+
+            case EXPORT_REQUEST:
+                Uri uri = data.getData();
+                new Exporter(uri).execute();
+                return;
+
+            case IMPORT_REQUEST:
+                uri = data.getData();
+                new Importer().prepare(uri);
+                return;
+        }
+        onMeterChanged();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.action_main, menu);
-
-        MenuItem itemImport = menu.findItem(R.id.action_import);
-        MenuItem itemExport = menu.findItem(R.id.action_export);
-
-        itemImport.setEnabled(isExternalStorageWritable());
-        itemExport.setEnabled(isExternalStorageWritable());
-
         invalidateOptionsMenu();
         return super.onCreateOptionsMenu(menu);
     }
@@ -127,32 +142,111 @@ public class MainActivity extends AppCompatActivity implements MeterList.OnMeter
 
     private void exportData() {
 
-        try {
-            home.exportTo(externalDir);
-            toast(R.string.export_success);
-        } catch (IOException e) {
-            toast(R.string.export_failure);
-        }
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("text/json");
+
+        final String dateTime = DateHelper.getTimestamp(DateHelper.getNow());
+        final String filename = String.format("Export_%s.txt", dateTime);
+
+        intent.putExtra(Intent.EXTRA_TITLE, filename);
+        startActivityForResult(intent, EXPORT_REQUEST);
     }
 
     private void importData() {
 
-        final AlertDialog dialog = dialogHelper.getChoiceDialog(this, R.string.import_title, externalDir.list());
-        dialog.show();
-        final Button ok = dialog.getButton(BUTTON_POSITIVE);
-        ok.setEnabled(false);
-        ok.setTag(new ImportPrepare());
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("text/*");
+        startActivityForResult(intent, IMPORT_REQUEST);
     }
 
-    private boolean isExternalStorageWritable() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
-        String state = Environment.getExternalStorageState();
-        return Environment.MEDIA_MOUNTED.equals(state);
+        super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.main);
+
+        DateHelper.setContext(this);
+
+        database = Database.getInstance(this);
+
+        if (home == null)
+            home = new Home();
+
+        if (meterList == null)
+            meterList = new MeterList();
+        meterList.setRetainInstance(true);
+
+        if (billList == null)
+            billList = new BillList();
+        billList.setRetainInstance(true);
+
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(
+                getSupportFragmentManager());
+        mViewPager = findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
     }
 
-    private void toast(int resId) {
+    @Override
+    protected void onDestroy() {
 
-        Toast.makeText(this, resId, Toast.LENGTH_LONG).show();
+        super.onDestroy();
+        finish();
+    }
+
+    private class Exporter implements DialogHelper.DialogCommand {
+
+        private final Uri exportUri;
+
+        Exporter(Uri uri) {
+            this.exportUri = uri;
+        }
+
+        @Override
+        public void execute() {
+            final Toast toast = Toast.makeText(MainActivity.this, R.string.export_success,
+                    Toast.LENGTH_SHORT);
+
+            final ProgressDialog progress = new ProgressDialog(MainActivity.this);
+            progress.setIndeterminate(true);
+            progress.setProgress(0);
+            progress.show();
+
+            @SuppressLint("HandlerLeak") final Handler handler = new Handler() {
+
+                @Override
+                public void handleMessage(Message msg) {
+
+                    super.handleMessage(msg);
+                    progress.dismiss();
+                    toast.show();
+                    setResult(Activity.RESULT_OK);
+                }
+            };
+
+            new Thread(() -> {
+
+                progress.setMessage(getString(R.string.exporting));
+
+                String data = home.exportJSON();
+                try {
+                    Context context = MainActivity.this;
+                    OutputStream stream = context.getContentResolver().openOutputStream(exportUri);
+                    stream.write(data.getBytes());
+                    stream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                handler.sendMessage(handler.obtainMessage());
+            }).start();
+        }
     }
 
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -184,19 +278,14 @@ public class MainActivity extends AppCompatActivity implements MeterList.OnMeter
         }
     }
 
-    private class ImportExecute implements DialogHelper.DialogCommand {
+    private class Importer implements DialogHelper.DialogCommand {
 
-        private final Home importedHome;
-
-        public ImportExecute(Home home) {
-
-            importedHome = home;
-        }
+        private Home newHome;
 
         @Override
         public void execute() {
 
-            final Toast completed = Toast.makeText(MainActivity.this, R.string.import_success,
+            final Toast toast = Toast.makeText(MainActivity.this, R.string.import_success,
                     Toast.LENGTH_SHORT);
 
             final ProgressDialog progress = new ProgressDialog(MainActivity.this);
@@ -204,8 +293,7 @@ public class MainActivity extends AppCompatActivity implements MeterList.OnMeter
             progress.setProgress(0);
             progress.show();
 
-            @SuppressLint("HandlerLeak")
-            final Handler handler = new Handler() {
+            @SuppressLint("HandlerLeak") final Handler handler = new Handler() {
 
                 @Override
                 public void handleMessage(Message msg) {
@@ -214,51 +302,41 @@ public class MainActivity extends AppCompatActivity implements MeterList.OnMeter
 
                     MeterAdapter meterAdapter = (MeterAdapter) meterList.getListAdapter();
                     meterAdapter.clear();
-                    meterAdapter.addAll(importedHome.getMeters());
+                    meterAdapter.addAll(newHome.getMeters());
 
                     BillAdapter billAdapter = (BillAdapter) billList.getListAdapter();
                     billAdapter.clear();
-                    billAdapter.addAll(importedHome.getBills());
+                    billAdapter.addAll(newHome.getBills());
 
                     progress.dismiss();
-                    completed.show();
+                    toast.show();
                     setResult(Activity.RESULT_OK);
                 }
             };
 
-            new Thread(new Runnable() {
+            new Thread(() -> {
 
-                @Override
-                public void run() {
+                progress.setMessage(getString(R.string.importing));
 
-                    progress.setMessage(getString(R.string.importing));
+                database.rebuild(null);
+                home.replaceWith(newHome);
 
-                    database.rebuild(null);
-                    home.replaceWith(importedHome);
-
-                    handler.sendMessage(handler.obtainMessage());
-
-                }
+                handler.sendMessage(handler.obtainMessage());
             }).start();
         }
-    }
 
-    private class ImportPrepare implements DialogHelper.DialogCommand {
+        public void prepare(Uri importUri) {
 
-        private Home newHome;
-
-        @Override
-        public void execute() {
-
-            final String path = externalDir.getAbsolutePath();
-            final String file = dialogHelper.getChoice();
             try {
-                newHome = new Home(new File(path, file));
-                boolean success = newHome.getMeters().size() > 0;
-                if (success)
+                Context context = MainActivity.this;
+                InputStream stream = context.getContentResolver().openInputStream(importUri);
+                newHome = new Home(stream);
+                stream.close();
+
+                if (newHome.getMeters().size() > 0)
                     confirm();
                 else
-                    toast(R.string.missing_entries);
+                    Toast.makeText(context, R.string.missing_entries, Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -269,48 +347,7 @@ public class MainActivity extends AppCompatActivity implements MeterList.OnMeter
             final AlertDialog dialog = dialogHelper.getAlertDialog(MainActivity.this,
                     R.string.import_title, R.string.confirm_import);
             dialog.show();
-            dialog.getButton(BUTTON_POSITIVE).setTag(new ImportExecute(newHome));
+            dialog.getButton(BUTTON_POSITIVE).setTag(this);
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.main);
-
-        DateHelper.setContext(this);
-
-        database = Database.getInstance(this);
-
-        if (home == null)
-            home = new Home();
-
-        externalDir = getExternalFilesDir(null);
-
-        if (meterList == null)
-            meterList = new MeterList();
-        meterList.setRetainInstance(true);
-
-        if (billList == null)
-            billList = new BillList();
-        billList.setRetainInstance(true);
-
-        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(
-                getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-    }
-
-    @Override
-    protected void onDestroy() {
-
-        super.onDestroy();
-        finish();
     }
 }

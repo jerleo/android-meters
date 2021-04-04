@@ -1,13 +1,14 @@
 package de.jerleo.android;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -107,7 +108,7 @@ public class ReadingActivity extends FragmentActivity implements OnClickListener
                 R.id.digit_5, R.id.digit_6, R.id.digit_7};
 
         for (int digit_id : digit_ids) {
-            final TextView digit = (TextView) findViewById(digit_id);
+            final TextView digit = findViewById(digit_id);
             digits.add(digit);
             formatStr += "0";
         }
@@ -115,10 +116,10 @@ public class ReadingActivity extends FragmentActivity implements OnClickListener
 
     private void findViews() {
 
-        readingDate = (DatePicker) findViewById(R.id.reading_date);
-        readingCosts = (TextView) findViewById(R.id.reading_costs);
-        meterUnit = (TextView) findViewById(R.id.meter_unit);
-        save = (Button) findViewById(R.id.reading_save);
+        readingDate = findViewById(R.id.reading_date);
+        readingCosts = findViewById(R.id.reading_costs);
+        meterUnit = findViewById(R.id.meter_unit);
+        save = findViewById(R.id.reading_save);
 
         minus1000 = findViewById(R.id.minus_1000);
         minus100 = findViewById(R.id.minus_100);

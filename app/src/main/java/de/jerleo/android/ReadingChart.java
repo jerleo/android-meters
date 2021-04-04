@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Window;
 
 import com.github.mikephil.charting.charts.CombinedChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -16,7 +15,7 @@ import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
@@ -91,13 +90,13 @@ public class ReadingChart extends Activity {
         return barData;
     }
 
-    public class MonthAxisFormatter implements IAxisValueFormatter {
+    public static class MonthAxisFormatter extends ValueFormatter {
 
         private final Locale locale = Locale.getDefault();
         private final Calendar calendar = Calendar.getInstance();
 
         @Override
-        public String getFormattedValue(float value, AxisBase axis) {
+        public String getFormattedValue(float value) {
 
             calendar.set(Calendar.MONTH, (int) value);
             return calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, locale);
@@ -120,7 +119,7 @@ public class ReadingChart extends Activity {
         combinedData.setData(getAverageData());
         combinedData.setData(getCurrentData());
 
-        CombinedChart chart = (CombinedChart) findViewById(R.id.reading_chart);
+        CombinedChart chart = findViewById(R.id.reading_chart);
         chart.setData(combinedData);
 
         XAxis xAxis = chart.getXAxis();

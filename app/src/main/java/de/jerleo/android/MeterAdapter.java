@@ -3,7 +3,6 @@ package de.jerleo.android;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -42,31 +41,23 @@ class MeterAdapter extends ArrayAdapter<Meter> {
             row = inflater.inflate(R.layout.meter_row, parent, false);
             final ViewHolder holder = new ViewHolder();
 
-            holder.name = (TextView) row.findViewById(R.id.meter_name);
-            holder.number = (TextView) row.findViewById(R.id.meter_number);
-            holder.date = (TextView) row.findViewById(R.id.meter_date);
-            holder.count = (TextView) row.findViewById(R.id.meter_count);
+            holder.name = row.findViewById(R.id.meter_name);
+            holder.number = row.findViewById(R.id.meter_number);
+            holder.date = row.findViewById(R.id.meter_date);
+            holder.count = row.findViewById(R.id.meter_count);
 
-            holder.chart = (ImageButton) row.findViewById(R.id.chart_button);
-            holder.chart.setOnClickListener(new OnClickListener() {
+            holder.chart = row.findViewById(R.id.chart_button);
+            holder.chart.setOnClickListener(v -> {
 
-                @Override
-                public void onClick(View v) {
-
-                    final Integer position = (Integer) v.getTag();
-                    meterList.showChart(position);
-                }
+                final Integer position1 = (Integer) v.getTag();
+                meterList.showChart(position1);
             });
 
-            holder.more = (ImageButton) row.findViewById(R.id.more_button);
-            holder.more.setOnClickListener(new OnClickListener() {
+            holder.more = row.findViewById(R.id.more_button);
+            holder.more.setOnClickListener(v -> {
 
-                @Override
-                public void onClick(View v) {
-
-                    final Integer position = (Integer) v.getTag();
-                    meterList.showReadings(position);
-                }
+                final Integer position12 = (Integer) v.getTag();
+                meterList.showReadings(position12);
             });
             row.setTag(holder);
         }

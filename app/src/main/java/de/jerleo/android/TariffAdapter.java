@@ -41,10 +41,10 @@ class TariffAdapter extends ArrayAdapter<Tariff> {
             row = inflater.inflate(R.layout.tariff_row, parent, false);
             final ViewHolder holder = new ViewHolder();
 
-            holder.begin = (TextView) row.findViewById(R.id.valid_from);
-            holder.fee = (TextView) row.findViewById(R.id.monthly_fee);
-            holder.price = (TextView) row.findViewById(R.id.unit_price);
-            holder.payment = (TextView) row.findViewById(R.id.payment);
+            holder.begin = row.findViewById(R.id.valid_from);
+            holder.fee = row.findViewById(R.id.monthly_fee);
+            holder.price = row.findViewById(R.id.unit_price);
+            holder.payment = row.findViewById(R.id.payment);
 
             row.setTag(holder);
         }

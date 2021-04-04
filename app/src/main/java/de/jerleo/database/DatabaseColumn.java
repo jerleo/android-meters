@@ -10,8 +10,8 @@ public class DatabaseColumn {
     private boolean nullable = true;
     private boolean primaryKey = false;
 
-    @SuppressWarnings({"FieldCanBeLocal", "CanBeFinal"})
-    private boolean unique = false;
+    @SuppressWarnings("FieldCanBeLocal")
+    private final boolean unique = false;
 
     private String foreignTable;
     private String foreignColumn;

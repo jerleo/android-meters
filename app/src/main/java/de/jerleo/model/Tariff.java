@@ -1,8 +1,9 @@
 package de.jerleo.model;
 
-import android.support.annotation.NonNull;
 import android.util.JsonReader;
 import android.util.JsonWriter;
+
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.util.ArrayList;

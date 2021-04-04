@@ -136,18 +136,18 @@ public class TariffActivity extends Activity implements OnClickListener,
         setContentView(R.layout.tariff);
         setTitle(R.string.tariff);
 
-        datePicker = (DatePicker) findViewById(R.id.valid_from);
+        datePicker = findViewById(R.id.valid_from);
 
-        unitPrice = (TextView) findViewById(R.id.unit_price);
-        monthlyFee = (TextView) findViewById(R.id.monthly_fee);
-        monthlyPayment = (TextView) findViewById(R.id.payment);
+        unitPrice = findViewById(R.id.unit_price);
+        monthlyFee = findViewById(R.id.monthly_fee);
+        monthlyPayment = findViewById(R.id.payment);
 
-        hasFee = (CheckBox) findViewById(R.id.has_fee);
-        hasPrice = (CheckBox) findViewById(R.id.has_price);
-        hasPayment = (CheckBox) findViewById(R.id.has_payment);
+        hasFee = findViewById(R.id.has_fee);
+        hasPrice = findViewById(R.id.has_price);
+        hasPayment = findViewById(R.id.has_payment);
 
-        save = (Button) findViewById(R.id.save);
-        Button cancel = (Button) findViewById(R.id.cancel);
+        save = findViewById(R.id.save);
+        Button cancel = findViewById(R.id.cancel);
 
         final Bundle bundle = this.getIntent().getExtras();
         final int meterPosition = bundle.getInt("meter");

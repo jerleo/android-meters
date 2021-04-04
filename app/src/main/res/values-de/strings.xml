@@ -15,7 +15,6 @@
     <string name="delete">Löschen</string>
     <string name="delete_message">Der Eintrag wird gelöscht.</string>
     <string name="description">Beschreibung</string>
-    <string name="export_failure">Export fehlgeschlagen</string>
     <string name="export_success">Export erfolgreich</string>
     <string name="importing">Importiere Daten …</string>
     <string name="import_success">Import erfolgreich</string>
@@ -65,5 +64,6 @@
     <string name="tariff">Tarif</string>
     <string name="unit_price">Verbrauchspreis pro Einheit</string>
     <string name="valid_from">Gülig ab</string>
+    <string name="exporting">Exportiere Daten …</string>
 
 </resources>

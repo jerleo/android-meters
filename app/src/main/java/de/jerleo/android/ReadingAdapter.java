@@ -38,10 +38,10 @@ class ReadingAdapter extends ArrayAdapter<Reading> {
             row = inflater.inflate(R.layout.reading_row, parent, false);
             final ViewHolder holder = new ViewHolder();
 
-            holder.date = (TextView) row.findViewById(R.id.reading_date);
-            holder.count = (TextView) row.findViewById(R.id.reading_count);
-            holder.costs = (TextView) row.findViewById(R.id.reading_costs);
-            holder.consumption = (TextView) row.findViewById(R.id.consumption);
+            holder.date = row.findViewById(R.id.reading_date);
+            holder.count = row.findViewById(R.id.reading_count);
+            holder.costs = row.findViewById(R.id.reading_costs);
+            holder.consumption = row.findViewById(R.id.consumption);
             row.setTag(holder);
         }
 

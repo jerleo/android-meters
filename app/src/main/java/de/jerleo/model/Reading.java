@@ -1,8 +1,9 @@
 package de.jerleo.model;
 
-import android.support.annotation.NonNull;
 import android.util.JsonReader;
 import android.util.JsonWriter;
+
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,8 +63,7 @@ public class Reading implements Comparable<Reading> {
     public int compareTo(@NonNull Reading other) {
 
         final int compDate = this.date.compareTo(other.date);
-        final int compCount = Integer.valueOf(this.count)
-                .compareTo(other.count);
+        final int compCount = Integer.compare(this.count, other.count);
         if (compDate == 0)
             return compCount;
         else
