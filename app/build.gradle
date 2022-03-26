@@ -1,21 +1,22 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "de.jerleo.android"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdk 26
+        targetSdk 28
         versionCode 1
         versionName "1.0"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,7 +28,12 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation "androidx.core:core-ktx:1.7.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

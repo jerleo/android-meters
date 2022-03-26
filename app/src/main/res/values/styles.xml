@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat">
@@ -6,8 +7,23 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- style for main activity -->
+        <item name="actionOverflowMenuStyle">@style/PopupMenu</item>
+
+        <!-- style for list activity -->
+        <item name="android:actionOverflowMenuStyle">@style/PopupMenu</item>
+
+        <!-- style for context menu -->
+        <item name="android:dropDownListViewStyle">@style/AppTheme.DropDownList</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="PopupMenu" parent="@style/Widget.MaterialComponents.PopupMenu.Overflow">
+        <item name="android:popupBackground">@drawable/bg_menu</item>
+    </style>
+
+    <style name="AppTheme.DropDownList" parent="Widget.AppCompat.ListView.DropDown">
+        <item name="android:background">@drawable/bg_menu</item>
+    </style>
 
 </resources>

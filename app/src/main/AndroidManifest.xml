@@ -12,20 +12,22 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name="de.jerleo.android.activity.ActivityMain"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MeterActivity" />
-        <activity android:name=".ReadingList" />
-        <activity android:name=".ReadingActivity" />
-        <activity android:name=".TariffList" />
-        <activity android:name=".TariffActivity" />
-        <activity android:name=".BillActivity" />
-        <activity android:name=".ReadingChart" />
+        <activity android:name="de.jerleo.android.activity.ActivityBill" />
+        <activity android:name="de.jerleo.android.activity.ActivityMeter" />
+        <activity android:name="de.jerleo.android.activity.ActivityReading" />
+        <activity android:name="de.jerleo.android.activity.ActivityTariff" />
+        <activity android:name="de.jerleo.android.activity.ReadingChart" />
+        <activity android:name="de.jerleo.android.list.ListReading" />
+        <activity android:name="de.jerleo.android.list.ListTariff" />
 
     </application>
 

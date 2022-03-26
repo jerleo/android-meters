@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <TableRow
         android:id="@+id/button_row"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
-            android:text="@string/cancel"/>
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/save"
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
-            android:text="@string/save"/>
+            android:text="@string/save" />
 
     </TableRow>
 
@@ -46,22 +46,22 @@
                 android:layout_height="wrap_content"
                 android:labelFor="@+id/description"
                 android:text="@string/description"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <EditText
                 android:id="@id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                android:importantForAutofill="no" />
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:labelFor="@+id/begin"
                 android:text="@string/begin"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <DatePicker
                 android:id="@id/begin"
@@ -69,12 +69,12 @@
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
-                android:spinnersShown="true"/>
+                android:spinnersShown="true" />
 
             <TableLayout
                 android:id="@+id/meter_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

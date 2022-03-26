@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TableRow
         android:id="@+id/button_row"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dip"
-            android:text="@string/cancel"/>
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/reading_save"
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dip"
-            android:text="@string/save"/>
+            android:text="@string/save" />
 
     </TableRow>
 
@@ -46,15 +46,15 @@
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
-                android:spinnersShown="true"/>
+                android:spinnersShown="true" />
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dip"
                 android:layout_marginLeft="5dip"
-                android:layout_marginRight="5dip"
                 android:layout_marginTop="10dip"
+                android:layout_marginRight="5dip"
+                android:layout_marginBottom="10dip"
                 android:layout_weight="1">
 
                 <TextView
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sample_unit"
-                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
                     android:id="@+id/digit_0"
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero" />
 
                 <TextView
                     android:id="@+id/digit_1"
@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero" />
 
                 <TextView
                     android:id="@+id/digit_2"
@@ -87,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero" />
 
                 <TextView
                     android:id="@+id/digit_3"
@@ -95,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero" />
 
                 <TextView
                     android:id="@+id/digit_4"
@@ -103,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero" />
 
                 <TextView
                     android:id="@+id/digit_5"
@@ -111,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero" />
 
                 <TextView
                     android:id="@+id/digit_6"
@@ -119,7 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero" />
 
                 <TextView
                     android:id="@+id/digit_7"
@@ -127,7 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero" />
             </TableRow>
 
             <TableRow
@@ -143,7 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/plus_1000"/>
+                    android:text="@string/plus_1000" />
 
                 <Button
                     android:id="@+id/plus_100"
@@ -151,7 +151,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/plus_100"/>
+                    android:text="@string/plus_100" />
 
                 <Button
                     android:id="@+id/plus_10"
@@ -159,7 +159,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/plus_10"/>
+                    android:text="@string/plus_10" />
 
                 <Button
                     android:id="@+id/plus_1"
@@ -167,7 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/plus_1"/>
+                    android:text="@string/plus_1" />
             </TableRow>
 
             <TableRow
@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/minus_1000"/>
+                    android:text="@string/minus_1000" />
 
                 <Button
                     android:id="@+id/minus_100"
@@ -191,7 +191,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/minus_100"/>
+                    android:text="@string/minus_100" />
 
                 <Button
                     android:id="@+id/minus_10"
@@ -199,7 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/minus_10"/>
+                    android:text="@string/minus_10" />
 
                 <Button
                     android:id="@+id/minus_1"
@@ -207,7 +207,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/minus_1"/>
+                    android:text="@string/minus_1" />
 
             </TableRow>
 
@@ -224,7 +224,7 @@
                     android:layout_margin="3dip"
                     android:gravity="center_horizontal"
                     android:text="@string/costs"
-                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
                     android:id="@+id/reading_costs"
@@ -233,9 +233,11 @@
                     android:layout_margin="3dip"
                     android:gravity="center_horizontal"
                     android:text="@string/sample_costs"
-                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
+
         </LinearLayout>
+
     </ScrollView>
 
 </RelativeLayout>
