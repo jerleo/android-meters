@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -65,11 +64,6 @@ class ActivityMain : AppCompatActivity(), OnListChangedListener {
         override fun getItemCount(): Int = 2
         override fun createFragment(position: Int): Fragment =
             if (position == 0) listMeter else listBill
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        setContentView(R.layout.main)
     }
 
     override fun onDestroy() {

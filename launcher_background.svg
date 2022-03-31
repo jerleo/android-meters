@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with Inkscape (http://www.inkscape.org/) -->
+<!--suppress ALL -->
+<svg width="192" height="192" viewBox="0 0 50.8 50.8" version="1.1" id="svg1101"
+    xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+    <defs id="defs1098">
+        <linearGradient id="linearGradient8002">
+            <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop8000" />
+        </linearGradient>
+    </defs>
+    <g id="layer1" style="display:inline" transform="translate(-13.592309,-13.567843)">
+        <g id="g147986" transform="matrix(1.7125802,0,0,1.7125802,-1.9148815,-4.7157675)">
+            <g id="g1101">
+                <path id="light_circle"
+                    style="display:inline;fill:#009cd5;stroke:#333333;stroke-width:0.17548;stroke-opacity:0.7"
+                    d="M 38.629973,25.507483 A 14.743682,14.743682 0 0 1 23.886292,40.251164 14.743682,14.743682 0 0 1 9.1426096,25.507483 14.743682,14.743682 0 0 1 23.886292,10.763801 14.743682,14.743682 0 0 1 38.629973,25.507483 Z" />
+                <path id="dark_circle"
+                    style="display:inline;fill:#273a5f;stroke:#333333;stroke-width:0.168645;stroke-opacity:0.7"
+                    d="M 38.567213,25.841272 A 14.169451,14.169451 0 0 1 24.397762,40.010723 14.169451,14.169451 0 0 1 10.228312,25.841272 14.169451,14.169451 0 0 1 24.397762,11.671822 14.169451,14.169451 0 0 1 38.567213,25.841272 Z" />
+                <path id="outer_circle"
+                    style="display:inline;fill:#e8e8e8;stroke:#333333;stroke-width:0.157864;stroke-opacity:0.7"
+                    d="M 37.149879,25.507483 A 13.263588,13.263588 0 0 1 23.886292,38.77107 13.263588,13.263588 0 0 1 10.622704,25.507483 13.263588,13.263588 0 0 1 23.886292,12.243895 13.263588,13.263588 0 0 1 37.149879,25.507483 Z" />
+                <path id="inner_circle"
+                    style="display:inline;fill:#917c6f;fill-opacity:0.879306;stroke:#333333;stroke-width:0;stroke-opacity:0.7"
+                    d="m 32.560225,25.507483 a 8.6739339,8.7198085 0 0 1 -8.673933,8.719808 8.6739339,8.7198085 0 0 1 -8.673934,-8.719808 8.6739339,8.7198085 0 0 1 8.673934,-8.719809 8.6739339,8.7198085 0 0 1 8.673933,8.719809 z" />
+            </g>
+        </g>
+    </g>
+</svg>

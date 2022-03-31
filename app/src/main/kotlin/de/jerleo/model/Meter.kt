@@ -122,7 +122,7 @@ class Meter : Comparable<Meter> {
         writer.endObject()
     }
 
-    fun getAverageFor(month: Int): Float {
+    fun averageFor(month: Int): Float {
         var readings = readings.filter { it.date.monthValue == month }
         var months = readings.map { it.date.withDayOfMonth(1) }.distinct().count()
         var usage = readings.sumOf { it.usage() }.toFloat()
@@ -134,7 +134,7 @@ class Meter : Comparable<Meter> {
         return if (months > 0) usage / months else 0f
     }
 
-    fun getConsumptionFor(month: Int): Int =
+    fun consumptionFor(month: Int): Int =
         readings.filter {
             var lastYear = latestReading()!!.date.minusYears(1)
             lastYear = lastYear.withDayOfMonth(lastYear.lengthOfMonth())
@@ -150,6 +150,7 @@ class Meter : Comparable<Meter> {
     fun fees(month: LocalDate): Double =
         tariffs.firstOrNull { it.isValidFeeFor(month) }?.fee ?: 0.0
 
+    fun earliestReading(): Reading? = readings.lastOrNull()
     fun latestReading(): Reading? = readings.firstOrNull()
 
     fun persist() {
@@ -165,11 +166,11 @@ class Meter : Comparable<Meter> {
 
     private fun addCalculatedReadings() {
         val calculated: MutableList<Reading> = ArrayList()
-        readings.filter { it.monthEndMissing() }.forEach { calculated.add(getInterpolation(it)) }
+        readings.filter { it.monthEndMissing() }.forEach { calculated.add(interpolated(it)) }
         readings.addAll(calculated)
     }
 
-    private fun getInterpolation(reading: Reading): Reading {
+    private fun interpolated(reading: Reading): Reading {
 
         // Get reading dates
         val thisDate = reading.date

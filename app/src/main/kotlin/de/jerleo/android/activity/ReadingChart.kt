@@ -10,6 +10,7 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import de.jerleo.android.R
+import de.jerleo.database.Constants
 import de.jerleo.model.Home
 import de.jerleo.model.Meter
 import java.util.*
@@ -23,7 +24,7 @@ class ReadingChart : Activity() {
             val average: MutableList<Entry> = ArrayList()
             for (month in 1..12) {
                 val x = month.toFloat() - 1
-                val y = meter.getAverageFor(month)
+                val y = meter.averageFor(month)
                 average.add(Entry(x, y))
             }
             val lineData = LineData()
@@ -44,7 +45,7 @@ class ReadingChart : Activity() {
             val lastYear: MutableList<BarEntry> = ArrayList()
             repeat(12) {
                 val x = date.monthValue.toFloat() - 1
-                val y = meter.getConsumptionFor(date.monthValue).toFloat()
+                val y = meter.consumptionFor(date.monthValue).toFloat()
                 if (date.year == year)
                     thisYear.add(BarEntry(x, y))
                 else
@@ -84,7 +85,7 @@ class ReadingChart : Activity() {
         setContentView(R.layout.reading_chart)
 
         val bundle = this.intent.extras
-        val meterPosition = bundle!!.getInt("meter")
+        val meterPosition = bundle!!.getInt(Constants.METER)
         meter = Home.instance.meter(meterPosition)
         if (meter.latestReading() == null)
             return

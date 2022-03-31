@@ -39,17 +39,20 @@ internal class AdapterBill(
         }
 
         val bill = bills[position]
-        val amount = bill.balance()
+        val billPayments = bill.payments(0)
+        val billFees = bill.fees(0)
+        val billCosts = bill.costs(0)
+        val billBalance = billPayments - billFees - billCosts
         val holder = row!!.tag as ViewHolder
         holder.apply {
             description.text = bill.name
-            begin.text = DateHelper.formatShort(bill.dateFrom)
-            end.text = DateHelper.formatShort(bill.dateTo)
-            fees.text = String.format(currencyFormat, bill.fees())
-            costs.text = String.format(currencyFormat, bill.costs())
-            payments.text = String.format(currencyFormat, bill.payments())
-            balance.text = String.format(currencyFormat, amount)
-            if (amount < 0)
+            begin.text = DateHelper.formatMedium(bill.dateFrom)
+            end.text = DateHelper.formatMedium(bill.dateTo)
+            fees.text = String.format(currencyFormat, -billFees)
+            costs.text = String.format(currencyFormat, -billCosts)
+            payments.text = String.format(currencyFormat, billPayments)
+            balance.text = String.format(currencyFormat, billBalance)
+            if (billBalance < 0)
                 balance.setTextColor(Color.RED)
             else
                 balance.setTextColor(holder.textColor)

@@ -19,6 +19,7 @@ import de.jerleo.android.activity.ActivityMeter
 import de.jerleo.android.activity.ActivityReading
 import de.jerleo.android.activity.ReadingChart
 import de.jerleo.android.adapter.AdapterMeter
+import de.jerleo.database.Constants
 import de.jerleo.model.Home
 
 class ListMeter : ListFragment() {
@@ -39,6 +40,7 @@ class ListMeter : ListFragment() {
         super.onResume()
         listView.requestFocus()  // restore focus after swiping
         callback.onListChanged() // update lists
+        activity.closeContextMenu()
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -61,31 +63,31 @@ class ListMeter : ListFragment() {
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
         super.onListItemClick(l, v, position, id)
         val intent = Intent(activity, ActivityReading::class.java)
-        intent.putExtra("meter", position)
+        intent.putExtra(Constants.METER, position)
         startActivity(intent)
     }
 
     fun showChart(position: Int) {
         val intent = Intent(activity, ReadingChart::class.java)
-        intent.putExtra("meter", position)
+        intent.putExtra(Constants.METER, position)
         startActivity(intent)
     }
 
     fun showReadings(position: Int) {
         val intent = Intent(activity, ListReading::class.java)
-        intent.putExtra("meter", position)
+        intent.putExtra(Constants.METER, position)
         startActivity(intent)
     }
 
     private fun showTariffs(position: Int) {
         val intent = Intent(activity, ListTariff::class.java)
-        intent.putExtra("meter", position)
+        intent.putExtra(Constants.METER, position)
         startActivity(intent)
     }
 
     private fun change(position: Int) {
         val intent = Intent(activity, ActivityMeter::class.java)
-        intent.putExtra("meter", position)
+        intent.putExtra(Constants.METER, position)
         startActivity(intent)
     }
 

@@ -6,6 +6,7 @@ import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import de.jerleo.android.DateHelper
 import de.jerleo.android.R
+import de.jerleo.database.Constants
 import de.jerleo.model.Bill
 import de.jerleo.model.Home
 import de.jerleo.model.Item
@@ -21,7 +22,7 @@ class ActivityBill : FragmentActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.bill)
+        setContentView(R.layout.bill_create)
         setTitle(R.string.bill)
 
         val save: Button = findViewById(R.id.save)
@@ -31,7 +32,7 @@ class ActivityBill : FragmentActivity(), View.OnClickListener {
 
         val bundle = this.intent.extras
         bundle?.let {
-            val position = bundle.getInt("bill")
+            val position = bundle.getInt(Constants.BILL)
             bill = home.bill(position)
             description.text = bill.name
             dateFrom.init(

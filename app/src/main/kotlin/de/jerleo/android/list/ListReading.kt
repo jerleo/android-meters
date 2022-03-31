@@ -14,6 +14,7 @@ import de.jerleo.android.DialogHelper
 import de.jerleo.android.DialogHelper.DialogCommand
 import de.jerleo.android.R
 import de.jerleo.android.adapter.AdapterReading
+import de.jerleo.database.Constants
 import de.jerleo.model.Home
 import de.jerleo.model.Meter
 
@@ -25,10 +26,11 @@ class ListReading : ListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.reading_list)
         registerForContextMenu(listView)
 
         val bundle = this.intent.extras
-        val meterPosition = bundle!!.getInt("meter")
+        val meterPosition = bundle!!.getInt(Constants.METER)
         meter = Home.instance.meter(meterPosition)
         title = getString(R.string.readings) + ": " + meter.number
 

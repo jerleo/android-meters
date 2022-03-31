@@ -38,6 +38,25 @@
         android:layout_below="@+id/description"
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dip"
+        android:text="@string/monthly_payments"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/payments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dip"
+        android:text="@string/sample_payment"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payments"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dip"
         android:text="@string/monthly_fees"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -45,7 +64,7 @@
         android:id="@+id/fees"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/description"
+        android:layout_below="@+id/payments"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="15dip"
         android:text="@string/sample_payment"
@@ -71,41 +90,25 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/costs"
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dip"
-        android:text="@string/monthly_payments"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/payments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/costs"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dip"
-        android:text="@string/sample_payment"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/payments"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="15dip"
+        android:background="@drawable/border"
         android:text="@string/balance"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/payments"
+        android:layout_below="@+id/costs"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="15dip"
         android:text="@string/sample_payment"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold" />
 
 </RelativeLayout>

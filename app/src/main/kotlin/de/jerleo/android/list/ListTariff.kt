@@ -18,6 +18,7 @@ import de.jerleo.android.R
 import de.jerleo.android.RequestCode
 import de.jerleo.android.activity.ActivityTariff
 import de.jerleo.android.adapter.AdapterTariff
+import de.jerleo.database.Constants
 import de.jerleo.model.Home
 import de.jerleo.model.Meter
 
@@ -35,7 +36,7 @@ class ListTariff : ListActivity() {
         registerForContextMenu(listView)
 
         val bundle = this.intent.extras
-        meterPosition = bundle!!.getInt("meter")
+        meterPosition = bundle!!.getInt(Constants.METER)
         meter = Home.instance.meter(meterPosition)
         title = getString(R.string.tariffs) + ": " + meter.name
 
@@ -83,14 +84,14 @@ class ListTariff : ListActivity() {
 
     private fun create() {
         val intent = Intent(this@ListTariff, ActivityTariff::class.java)
-        intent.putExtra("meter", meterPosition)
+        intent.putExtra(Constants.METER, meterPosition)
         startActivityForResult(intent, RequestCode.TARIFF_CREATE)
     }
 
     private fun change(position: Int) {
         val intent = Intent(this@ListTariff, ActivityTariff::class.java)
-        intent.putExtra("meter", meterPosition)
-        intent.putExtra("tariff", position)
+        intent.putExtra(Constants.METER, meterPosition)
+        intent.putExtra(Constants.TARIFF, position)
         startActivityForResult(intent, RequestCode.TARIFF_CHANGE)
     }
 

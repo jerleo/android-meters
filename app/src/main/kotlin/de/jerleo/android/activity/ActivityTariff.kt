@@ -7,6 +7,7 @@ import android.widget.*
 import android.widget.DatePicker.OnDateChangedListener
 import de.jerleo.android.DateHelper
 import de.jerleo.android.R
+import de.jerleo.database.Constants
 import de.jerleo.model.Home
 import de.jerleo.model.Meter
 import de.jerleo.model.Tariff
@@ -44,11 +45,11 @@ class ActivityTariff : Activity(),
         save.setOnClickListener(this)
 
         val bundle = this.intent.extras
-        val meterPosition = bundle!!.getInt("meter")
+        val meterPosition = bundle!!.getInt(Constants.METER)
         meter = Home.instance.meter(meterPosition)
 
-        if (bundle.containsKey("tariff")) {
-            val tariffPosition = bundle.getInt("tariff")
+        if (bundle.containsKey(Constants.TARIFF)) {
+            val tariffPosition = bundle.getInt(Constants.TARIFF)
             tariff = meter.tariff(tariffPosition)
             tariff.let { t ->
 

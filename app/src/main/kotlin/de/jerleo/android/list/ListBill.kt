@@ -9,12 +9,14 @@ import android.view.ContextMenu.ContextMenuInfo
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView.AdapterContextMenuInfo
+import android.widget.ListView
 import androidx.fragment.app.ListFragment
 import de.jerleo.android.DialogHelper
 import de.jerleo.android.DialogHelper.DialogCommand
 import de.jerleo.android.R
 import de.jerleo.android.activity.ActivityBill
 import de.jerleo.android.adapter.AdapterBill
+import de.jerleo.database.Constants
 import de.jerleo.model.Home
 
 class ListBill : ListFragment() {
@@ -33,6 +35,7 @@ class ListBill : ListFragment() {
     override fun onResume() {
         super.onResume()
         listView.requestFocus() // restore focus after swiping
+        activity.closeContextMenu()
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -52,9 +55,16 @@ class ListBill : ListFragment() {
         inflater.inflate(R.menu.context_bill_list, menu)
     }
 
+    override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
+        super.onListItemClick(l, v, position, id)
+        val intent = Intent(activity, ListBillHistory::class.java)
+        intent.putExtra(Constants.BILL, position)
+        startActivity(intent)
+    }
+
     private fun change(position: Int) {
         val intent = Intent(activity, ActivityBill::class.java)
-        intent.putExtra("bill", position)
+        intent.putExtra(Constants.BILL, position)
         startActivity(intent)
     }
 

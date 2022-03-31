@@ -23,9 +23,12 @@ class Item {
         if (id == 0L) id = Database.insert(this) else Database.update(this)
     }
 
-    fun payments() = bill.months().sumOf { meter?.payments(it) ?: 0.0 }
-    fun costs() = meter?.costs(bill.dateFrom, bill.dateTo) ?: 0.0
-    fun fees() = bill.months().sumOf { meter?.fees(it) ?: 0.0 }
+    fun payments(minusYears: Int) = bill.months(minusYears).sumOf { meter?.payments(it) ?: 0.0 }
+    fun fees(minusYears: Int) = bill.months(minusYears).sumOf { meter?.fees(it) ?: 0.0 }
+    fun costs(minusYears: Int) = meter?.costs(
+        bill.dateFrom.minusYears(minusYears.toLong()),
+        bill.dateTo.minusYears(minusYears.toLong())
+    ) ?: 0.0
 
     @Throws(IOException::class)
     fun exportTo(writer: JsonWriter) {

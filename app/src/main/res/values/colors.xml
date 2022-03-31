@@ -6,4 +6,6 @@
     <color name="digitForeground">#000000</color>
     <color name="chartCurrent">#1976d2</color>
     <color name="chartPrior">#7f1976d2</color>
+    <color name="tableHeader">#33666666</color>
+    <color name="tableBorder">#88efefef</color>
 </resources>

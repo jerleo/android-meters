@@ -30,7 +30,7 @@ internal class AdapterReading(
                 date = row.findViewById(R.id.reading_date)
                 count = row.findViewById(R.id.reading_count)
                 costs = row.findViewById(R.id.reading_costs)
-                consumption = row.findViewById(R.id.consumption)
+                consumption = row.findViewById(R.id.delta)
             }
             row.tag = holder
         }
@@ -38,7 +38,7 @@ internal class AdapterReading(
         val reading = readings[position]
         val holder = row!!.tag as ViewHolder
         holder.apply {
-            date.text = DateHelper.formatShort(reading.date)
+            date.text = DateHelper.formatMedium(reading.date)
             count.text = String.format(unitFormat, reading.count, unit)
             consumption.text = String.format(unitFormat, reading.usage(), unit)
             costs.text = String.format(currencyFormat, reading.costs())

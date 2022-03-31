@@ -46,10 +46,9 @@ class Bill : Comparable<Bill> {
         return if (compareBegin == 0) compareDescription else compareBegin
     }
 
-    fun payments() = items.sumOf { it.payments() }
-    fun costs() = items.sumOf { it.costs() }
-    fun fees() = items.sumOf { it.fees() }
-    fun balance() = payments() - fees() - costs()
+    fun payments(minusYears: Int) = items.sumOf { it.payments(minusYears) }
+    fun fees(minusYears: Int) = items.sumOf { it.fees(minusYears) }
+    fun costs(minusYears: Int) = items.sumOf { it.costs(minusYears) }
 
     fun delete() {
         items.forEach { it.delete() }
@@ -64,9 +63,18 @@ class Bill : Comparable<Bill> {
         items.forEach { it.persist() }
     }
 
-    fun months(): MutableList<LocalDate> = DateHelper.monthList(
-        dateFrom, DateHelper.min(DateHelper.today.withDayOfMonth(1), dateTo)
+    private fun minDate() =
+        items.map { it.meter!! }.minOf { it.earliestReading()?.date ?: DateHelper.today }
+
+    fun months(minusYears: Int): MutableList<LocalDate> = DateHelper.months(
+        dateFrom.minusYears(minusYears.toLong()),
+        DateHelper.min(
+            DateHelper.today.withDayOfMonth(1),
+            dateTo.minusYears(minusYears.toLong())
+        )
     )
+
+    fun years(): MutableList<Int> = DateHelper.years(minDate(), DateHelper.today)
 
     fun contains(meter: Meter) = items.find { it.meter == meter } != null
     fun remove(meter: Meter) {

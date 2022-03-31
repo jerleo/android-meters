@@ -51,7 +51,7 @@ internal class AdapterTariff(
 
         val holder = row!!.tag as ViewHolder
         holder.apply {
-            begin.text = DateHelper.formatShort(tariff.dateFrom)
+            begin.text = DateHelper.formatMedium(tariff.dateFrom)
             fee.text = monthlyFeeStr
             price.text = unitPriceStr
             payment.text = paymentStr

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import de.jerleo.android.DateHelper
 import de.jerleo.android.R
+import de.jerleo.database.Constants
 import de.jerleo.model.Home
 import de.jerleo.model.Meter
 import de.jerleo.model.Reading
@@ -41,7 +42,7 @@ class ActivityReading : FragmentActivity(), View.OnClickListener, OnDateChangedL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.reading)
+        setContentView(R.layout.reading_create)
         getReading()
         title = getString(R.string.new_reading) + ": " + meter.number
         setButtonListeners()
@@ -93,7 +94,7 @@ class ActivityReading : FragmentActivity(), View.OnClickListener, OnDateChangedL
 
     private fun getReading() {
         val bundle = this.intent.extras
-        val position = bundle!!.getInt("meter")
+        val position = bundle!!.getInt(Constants.METER)
         meter = Home.instance.meter(position)
         meterUnit.text = meter.unit.toString()
         reading = Reading()

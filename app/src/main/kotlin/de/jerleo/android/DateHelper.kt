@@ -9,15 +9,19 @@ import java.time.temporal.ChronoUnit.DAYS
 
 object DateHelper {
 
-    private val formatShort = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
     private val formatLong = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
+    private val formatMedium = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
     private val formatTime = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmmss")
 
     val today: LocalDate = LocalDate.now()
 
+    private var lastFr: LocalDate? = null
+    private var lastTo: LocalDate? = null
+    private var lastMonths: MutableList<LocalDate>? = null
+
     fun format(date: LocalDate): String = date.format(DateTimeFormatter.ISO_DATE)
     fun formatLong(date: LocalDate): String = date.format(formatLong)
-    fun formatShort(date: LocalDate): String = date.format(formatShort)
+    fun formatMedium(date: LocalDate): String = date.format(formatMedium)
 
     fun parse(dateString: String): LocalDate = LocalDate.parse(dateString)
 
@@ -30,13 +34,28 @@ object DateHelper {
 
     fun min(date1: LocalDate, date2: LocalDate): LocalDate = if (date1 < date2) date1 else date2
 
-    fun monthList(from: LocalDate, to: LocalDate): MutableList<LocalDate> {
+    fun months(from: LocalDate, to: LocalDate): MutableList<LocalDate> {
+        if (from == lastFr && to == lastTo)
+            return lastMonths!!
         val result: ArrayList<LocalDate> = ArrayList()
         var month = from
         while (month <= to) {
             result.add(month)
             month = month.plusMonths(1)
         }
+        lastFr = from
+        lastTo = to
+        lastMonths = result
+        return result
+    }
+
+    fun years(from: LocalDate, to: LocalDate): MutableList<Int> {
+        val result: ArrayList<Int> = ArrayList()
+        val years = to.year - from.year
+        if (years > 0)
+            repeat(years) {
+                result.add(to.minusYears(it.toLong()).year)
+            }
         return result
     }
 }

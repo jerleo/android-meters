@@ -10,6 +10,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import de.jerleo.android.R
+import de.jerleo.database.Constants
 import de.jerleo.model.Home
 import de.jerleo.model.Meter
 
@@ -37,7 +38,7 @@ class ActivityMeter : FragmentActivity(), View.OnClickListener {
         var update = false
         val bundle = this.intent.extras
         bundle?.let {
-            val position = bundle.getInt("meter")
+            val position = bundle.getInt(Constants.METER)
             meter = home.meter(position)
             update = true
         }
@@ -82,6 +83,7 @@ class ActivityMeter : FragmentActivity(), View.OnClickListener {
                 val entry = s.toString().trim { it <= ' ' }
                 save.isEnabled = entry.isNotEmpty()
             }
+
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
         }

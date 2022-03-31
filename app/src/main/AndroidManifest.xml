@@ -7,13 +7,13 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="de.jerleo.android.activity.ActivityMain"
+            android:name=".activity.ActivityMain"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,13 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="de.jerleo.android.activity.ActivityBill" />
-        <activity android:name="de.jerleo.android.activity.ActivityMeter" />
-        <activity android:name="de.jerleo.android.activity.ActivityReading" />
-        <activity android:name="de.jerleo.android.activity.ActivityTariff" />
-        <activity android:name="de.jerleo.android.activity.ReadingChart" />
-        <activity android:name="de.jerleo.android.list.ListReading" />
-        <activity android:name="de.jerleo.android.list.ListTariff" />
+        <activity android:name=".activity.ActivityBill" />
+        <activity android:name=".activity.ActivityMeter" />
+        <activity android:name=".activity.ActivityReading" />
+        <activity android:name=".activity.ActivityTariff" />
+        <activity android:name=".activity.ReadingChart" />
+        <activity android:name=".list.ListBillHistory" />
+        <activity android:name=".list.ListReading" />
+        <activity android:name=".list.ListTariff" />
 
     </application>
 
