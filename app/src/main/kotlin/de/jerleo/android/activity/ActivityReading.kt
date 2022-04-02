@@ -98,15 +98,15 @@ class ActivityReading : FragmentActivity(), View.OnClickListener, OnDateChangedL
         meter = Home.instance.meter(position)
         meterUnit.text = meter.unit.toString()
         reading = Reading()
-        val latest = meter.latestReading()
-        latest?.let {
+        val last = meter.lastReading()
+        last?.let {
             thisCount = it.count
             lastCount = thisCount
 
-            // new reading must be after latest reading
-            minDate = latest.date.plusDays(1)
+            // new reading must be after last reading
+            minDate = last.date.plusDays(1)
             reading.count = thisCount
-            reading.prior = latest
+            reading.prior = last
         }
     }
 

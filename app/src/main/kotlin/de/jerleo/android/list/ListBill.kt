@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView.AdapterContextMenuInfo
 import android.widget.ListView
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.fragment.app.ListFragment
 import de.jerleo.android.DialogHelper
 import de.jerleo.android.DialogHelper.DialogCommand
@@ -24,6 +25,7 @@ class ListBill : ListFragment() {
     private var deletePosition = 0
 
     private val activity: Activity by lazy { requireActivity() }
+    private val callback by lazy { context as DialogHelper.OnListChangedListener }
     private val dialogHelper by lazy { DialogHelper() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,6 +37,7 @@ class ListBill : ListFragment() {
     override fun onResume() {
         super.onResume()
         listView.requestFocus() // restore focus after swiping
+        callback.onListChanged() // update lists
         activity.closeContextMenu()
     }
 
@@ -62,10 +65,16 @@ class ListBill : ListFragment() {
         startActivity(intent)
     }
 
+    private val billChange =
+        registerForActivityResult(StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK)
+                callback.onListChanged()
+        }
+
     private fun change(position: Int) {
         val intent = Intent(activity, ActivityBill::class.java)
         intent.putExtra(Constants.BILL, position)
-        startActivity(intent)
+        billChange.launch(intent)
     }
 
     private fun delete(position: Int) {

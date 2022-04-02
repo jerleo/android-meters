@@ -23,11 +23,12 @@ class Item {
         if (id == 0L) id = Database.insert(this) else Database.update(this)
     }
 
-    fun payments(minusYears: Int) = bill.months(minusYears).sumOf { meter?.payments(it) ?: 0.0 }
-    fun fees(minusYears: Int) = bill.months(minusYears).sumOf { meter?.fees(it) ?: 0.0 }
-    fun costs(minusYears: Int) = meter?.costs(
-        bill.dateFrom.minusYears(minusYears.toLong()),
-        bill.dateTo.minusYears(minusYears.toLong())
+    fun usage(year: Int) = bill.months(year).sumOf { meter?.usage(it) ?: 0 }
+    fun payments(year: Int) = bill.months(year).sumOf { meter?.payments(it) ?: 0.0 }
+    fun fees(year: Int) = bill.months(year).sumOf { meter?.fees(it) ?: 0.0 }
+    fun costs(year: Int) = meter?.costs(
+        bill.dateFrom.withYear(year),
+        bill.dateFrom.withYear(year + 1).minusDays(1)
     ) ?: 0.0
 
     @Throws(IOException::class)

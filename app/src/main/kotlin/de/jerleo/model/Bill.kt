@@ -46,9 +46,10 @@ class Bill : Comparable<Bill> {
         return if (compareBegin == 0) compareDescription else compareBegin
     }
 
-    fun payments(minusYears: Int) = items.sumOf { it.payments(minusYears) }
-    fun fees(minusYears: Int) = items.sumOf { it.fees(minusYears) }
-    fun costs(minusYears: Int) = items.sumOf { it.costs(minusYears) }
+    fun usage(year:Int) = items.sumOf { it.usage(year) }
+    fun payments(year: Int) = items.sumOf { it.payments(year) }
+    fun fees(year: Int) = items.sumOf { it.fees(year) }
+    fun costs(year: Int) = items.sumOf { it.costs(year) }
 
     fun delete() {
         items.forEach { it.delete() }
@@ -63,19 +64,31 @@ class Bill : Comparable<Bill> {
         items.forEach { it.persist() }
     }
 
-    private fun minDate() =
-        items.map { it.meter!! }.minOf { it.earliestReading()?.date ?: DateHelper.today }
+    private fun minYear(): Int {
+        val min = items.mapNotNull {
+            it.meter!!.firstReading()?.date
+        }.minOfOrNull { it } ?: return 0
+        val from = LocalDate.of(min.year, dateFrom.month, dateFrom.dayOfMonth)
+        return min.year - if (min < from) 1 else 0
+    }
 
-    fun months(minusYears: Int): MutableList<LocalDate> = DateHelper.months(
-        dateFrom.minusYears(minusYears.toLong()),
+    private fun maxYear(): Int {
+        val max = items.mapNotNull {
+            it.meter!!.lastReading()?.date
+        }.maxOfOrNull { it } ?: return 0
+        val from = LocalDate.of(max.year, dateFrom.month, dateFrom.dayOfMonth)
+        return max.year - if (max < from) 1 else 0
+    }
+
+    fun months(year: Int): MutableList<LocalDate> = DateHelper.months(
+        dateFrom.withYear(year),
         DateHelper.min(
             DateHelper.today.withDayOfMonth(1),
-            dateTo.minusYears(minusYears.toLong())
+            dateFrom.withYear(year + 1).minusDays(1)
         )
     )
 
-    fun years(): MutableList<Int> = DateHelper.years(minDate(), DateHelper.today)
-
+    fun years(): MutableList<Int> = DateHelper.years(minYear(), maxYear())
     fun contains(meter: Meter) = items.find { it.meter == meter } != null
     fun remove(meter: Meter) {
         items.filter { it.meter == meter }.forEach {

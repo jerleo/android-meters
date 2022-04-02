@@ -39,13 +39,13 @@ class ReadingChart : Activity() {
 
     private val currentData: BarData
         get() {
-            var date = meter.latestReading()!!.date
+            var date = meter.lastReading()!!.date
             val year = date.year
             val thisYear: MutableList<BarEntry> = ArrayList()
             val lastYear: MutableList<BarEntry> = ArrayList()
             repeat(12) {
                 val x = date.monthValue.toFloat() - 1
-                val y = meter.consumptionFor(date.monthValue).toFloat()
+                val y = meter.usage(date).toFloat()
                 if (date.year == year)
                     thisYear.add(BarEntry(x, y))
                 else
@@ -87,7 +87,7 @@ class ReadingChart : Activity() {
         val bundle = this.intent.extras
         val meterPosition = bundle!!.getInt(Constants.METER)
         meter = Home.instance.meter(meterPosition)
-        if (meter.latestReading() == null)
+        if (meter.lastReading() == null)
             return
 
         val combinedData = CombinedData()

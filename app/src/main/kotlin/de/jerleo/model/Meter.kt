@@ -62,7 +62,7 @@ class Meter : Comparable<Meter> {
             reading.apply {
                 meter = that
                 tariff = tariff(reading.date)
-                prior = latestReading()
+                prior = lastReading()
             })
         reading.persist()
         update()
@@ -134,11 +134,9 @@ class Meter : Comparable<Meter> {
         return if (months > 0) usage / months else 0f
     }
 
-    fun consumptionFor(month: Int): Int =
+    fun usage(month: LocalDate) =
         readings.filter {
-            var lastYear = latestReading()!!.date.minusYears(1)
-            lastYear = lastYear.withDayOfMonth(lastYear.lengthOfMonth())
-            it.date > lastYear && it.date.monthValue == month
+            it.date.year == month.year && it.date.monthValue == month.monthValue
         }.sumOf { it.usage() }
 
     fun payments(month: LocalDate): Double =
@@ -150,8 +148,8 @@ class Meter : Comparable<Meter> {
     fun fees(month: LocalDate): Double =
         tariffs.firstOrNull { it.isValidFeeFor(month) }?.fee ?: 0.0
 
-    fun earliestReading(): Reading? = readings.lastOrNull()
-    fun latestReading(): Reading? = readings.firstOrNull()
+    fun firstReading(): Reading? = readings.lastOrNull()
+    fun lastReading(): Reading? = readings.firstOrNull()
 
     fun persist() {
         if (id == 0L) id = insert(this) else update(this)

@@ -49,12 +49,11 @@ object DateHelper {
         return result
     }
 
-    fun years(from: LocalDate, to: LocalDate): MutableList<Int> {
+    fun years(from: Int, to: Int): MutableList<Int> {
         val result: ArrayList<Int> = ArrayList()
-        val years = to.year - from.year
-        if (years > 0)
-            repeat(years) {
-                result.add(to.minusYears(it.toLong()).year)
+        if (from > 0 && to > 0)
+            repeat(to - from + 1) {
+                result.add(to - it)
             }
         return result
     }

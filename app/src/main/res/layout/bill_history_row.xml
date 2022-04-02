@@ -10,8 +10,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="5dip"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:text="@string/sample_year"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/bill_usage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="end|center_vertical"
+        android:text="@string/sample_usage"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -49,6 +59,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginEnd="5dip"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:text="@string/sample_costs"

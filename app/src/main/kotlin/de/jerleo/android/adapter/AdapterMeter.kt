@@ -8,9 +8,11 @@ import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.TextView
 import de.jerleo.android.DateHelper
+import de.jerleo.android.DialogHelper
 import de.jerleo.android.R
 import de.jerleo.android.activity.ActivityMain
 import de.jerleo.android.list.ListMeter
+import de.jerleo.database.Constants
 import de.jerleo.model.Meter
 import java.text.DecimalFormat
 
@@ -18,9 +20,32 @@ internal class AdapterMeter(
     private var ctx: Context, textView: Int,
     private var meters: List<Meter>,
     private var listMeter: ListMeter
-) : ArrayAdapter<Meter>(ctx, textView, meters) {
+) : ArrayAdapter<Meter>(ctx, textView, meters), DialogHelper.OnListChangedListener {
 
     private var decimalFormat: DecimalFormat = ActivityMain.decimalFormat
+    private var values: MutableList<HashMap<String, String>> = ArrayList()
+
+    init {
+        fillValues()
+    }
+
+    override fun onListChanged() {
+        fillValues()
+    }
+
+    private fun fillValues() {
+        values.clear()
+        meters.forEach {
+            val last = it.lastReading()
+            val entry: HashMap<String, String> = HashMap()
+            entry[Constants.NUMBER] = it.number
+            entry[Constants.NAME] = it.name
+            entry[Constants.DATE] = if (last == null) "" else DateHelper.formatLong(last.date)
+            entry[Constants.COUNT] = if (last == null) "" else
+                decimalFormat.format(last.count) + " " + it.unit
+            values.add(entry)
+        }
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var row = convertView
@@ -46,20 +71,12 @@ internal class AdapterMeter(
             }
             row.tag = holder
         }
-        val meter = meters[position]
-        val reading = meter.latestReading()
-        var dateStr = ""
-        var countStr = ""
-        reading?.let {
-            dateStr = DateHelper.formatLong(reading.date)
-            countStr = decimalFormat.format(reading.count) + " " + meter.unit
-        }
         val holder = row!!.tag as ViewHolder
         holder.apply {
-            number.text = meter.number
-            name.text = meter.name
-            date.text = dateStr
-            count.text = countStr
+            number.text = values[position][Constants.NUMBER]
+            name.text = values[position][Constants.NAME]
+            date.text = values[position][Constants.DATE]
+            count.text = values[position][Constants.COUNT]
             chart.tag = position
             more.tag = position
         }

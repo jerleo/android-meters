@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">My Meters</string>
-    <string name="average">Average Consumption</string>
+    <string name="average">Average Usage</string>
     <string name="balance">Balance</string>
     <string name="begin">Begin</string>
     <string name="bill">Bill</string>
@@ -63,12 +63,14 @@
     <string name="sample_payment">140 $</string>
     <string name="sample_price">0.2275 $/kWh</string>
     <string name="sample_unit">kWh</string>
+    <string name="sample_usage" translatable="false">250 kWh</string>
     <string name="sample_year">YYYY</string>
     <string name="save">Save</string>
     <string name="tariff">Tariff</string>
     <string name="tariffs">Tariffs</string>
     <string name="total">Total</string>
     <string name="unit_price">Unit Price</string>
+    <string name="usage">Usage</string>
     <string name="valid_from">Valid From</string>
     <string name="year">Year</string>
     <string name="zero" translatable="false">0</string>

@@ -19,9 +19,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="5dip"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:gravity="start|top"
             android:text="@string/year"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="end|top"
+            android:text="@string/usage"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -71,7 +81,8 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bill_header" />
 

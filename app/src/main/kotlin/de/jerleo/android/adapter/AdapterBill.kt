@@ -8,16 +8,48 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import de.jerleo.android.DateHelper
+import de.jerleo.android.DialogHelper
 import de.jerleo.android.R
 import de.jerleo.android.activity.ActivityMain
+import de.jerleo.database.Constants
 import de.jerleo.model.Bill
 
 internal class AdapterBill(
     private var ctx: Context, textView: Int,
     private var bills: List<Bill>
-) : ArrayAdapter<Bill>(ctx, textView, bills) {
+) : ArrayAdapter<Bill>(ctx, textView, bills), DialogHelper.OnListChangedListener {
 
     private val currencyFormat: String = ActivityMain.currencyFormat
+    private var values: MutableList<HashMap<String, String>> = ArrayList()
+
+    init {
+        fillValues()
+    }
+
+    override fun onListChanged() {
+        fillValues()
+    }
+
+    private fun fillValues() {
+        values.clear()
+        bills.forEach {
+            val year = it.dateFrom.year
+            val billPayments = it.payments(year)
+            val billFees = it.fees(year)
+            val billCosts = it.costs(year)
+            val billBalance = billPayments - billFees - billCosts
+
+            val entry: HashMap<String, String> = HashMap()
+            entry[Constants.DESCRIPTION] = it.name
+            entry[Constants.BEGIN] = DateHelper.formatMedium(it.dateFrom)
+            entry[Constants.END] = DateHelper.formatMedium(it.dateTo)
+            entry[Constants.FEE] = String.format(currencyFormat, -billFees)
+            entry[Constants.COSTS] = String.format(currencyFormat, -billCosts)
+            entry[Constants.PAYMENT] = String.format(currencyFormat, billPayments)
+            entry[Constants.BALANCE] = String.format(currencyFormat, billBalance)
+            values.add(entry)
+        }
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var row = convertView
@@ -38,21 +70,16 @@ internal class AdapterBill(
             row.tag = holder
         }
 
-        val bill = bills[position]
-        val billPayments = bill.payments(0)
-        val billFees = bill.fees(0)
-        val billCosts = bill.costs(0)
-        val billBalance = billPayments - billFees - billCosts
         val holder = row!!.tag as ViewHolder
         holder.apply {
-            description.text = bill.name
-            begin.text = DateHelper.formatMedium(bill.dateFrom)
-            end.text = DateHelper.formatMedium(bill.dateTo)
-            fees.text = String.format(currencyFormat, -billFees)
-            costs.text = String.format(currencyFormat, -billCosts)
-            payments.text = String.format(currencyFormat, billPayments)
-            balance.text = String.format(currencyFormat, billBalance)
-            if (billBalance < 0)
+            description.text = values[position][Constants.DESCRIPTION]
+            begin.text = values[position][Constants.BEGIN]
+            end.text = values[position][Constants.END]
+            fees.text = values[position][Constants.FEE]
+            costs.text = values[position][Constants.COSTS]
+            payments.text = values[position][Constants.PAYMENT]
+            balance.text = values[position][Constants.BALANCE]
+            if (balance.text.contains("-"))
                 balance.setTextColor(Color.RED)
             else
                 balance.setTextColor(holder.textColor)

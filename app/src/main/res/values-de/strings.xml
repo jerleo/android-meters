@@ -57,7 +57,7 @@
     <string name="sample_costs">728,23 €</string>
     <string name="sample_count">12.345 kWh</string>
     <string name="sample_date">TT.MM.JJJJ</string>
-    <string name="sample_description">Wärmestrom HT</string>
+    <string name="sample_description">Wärmestrom</string>
     <string name="sample_fee">7,89 €</string>
     <string name="sample_meter">123 456 789</string>
     <string name="sample_payment">140 €</string>
@@ -68,6 +68,7 @@
     <string name="tariff">Tarif</string>
     <string name="tariffs">Tarife</string>
     <string name="total">Gesamt</string>
+    <string name="usage">Verbrauch</string>
     <string name="unit_price">Verbrauchspreis pro Einheit</string>
     <string name="valid_from">Gülig ab</string>
     <string name="year">Jahr</string>

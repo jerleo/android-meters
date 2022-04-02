@@ -99,8 +99,16 @@ class ActivityMain : AppCompatActivity(), OnListChangedListener {
     }
 
     override fun onListChanged() {
-        listMeter.listAdapter?.run { (this as AdapterMeter).notifyDataSetChanged() }
-        listBill.listAdapter?.run { (this as AdapterBill).notifyDataSetChanged() }
+        listMeter.listAdapter?.run {
+            val adapterMeter = (this as AdapterMeter)
+            adapterMeter.onListChanged()
+            adapterMeter.notifyDataSetChanged()
+        }
+        listBill.listAdapter?.run {
+            val adapterBill = (this as AdapterBill)
+            adapterBill.onListChanged()
+            adapterBill.notifyDataSetChanged()
+        }
     }
 
     private val exportActivity =
@@ -228,7 +236,8 @@ class ActivityMain : AppCompatActivity(), OnListChangedListener {
         val currencySymbol: String
             get() = currency.symbol
         val currencyFormat: String
-            get() = "%." + currency.defaultFractionDigits + "f " + currency.symbol
+            get() = "%,." + currency.defaultFractionDigits + "f " + currency.symbol
+        val currencyFormatShort = "%,.0f " + currency.symbol
         val decimalFormat: DecimalFormat
             get() = DecimalFormat(",###")
         val numberFormat: NumberFormat = DecimalFormat.getNumberInstance().apply {
