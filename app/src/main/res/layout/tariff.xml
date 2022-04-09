@@ -58,6 +58,34 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:labelFor="@+id/payment"
+                android:text="@string/monthly_payment"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@id/payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal" />
+
+                <CheckBox
+                    android:id="@+id/has_pay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:labelFor="@+id/monthly_fee"
                 android:text="@string/monthly_fee"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -112,33 +140,6 @@
                     android:layout_weight="1" />
             </TableRow>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/payment"
-                android:text="@string/monthly_payment"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@id/payment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:importantForAutofill="no"
-                    android:inputType="numberDecimal" />
-
-                <CheckBox
-                    android:id="@+id/has_pay"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
 
         </LinearLayout>
 

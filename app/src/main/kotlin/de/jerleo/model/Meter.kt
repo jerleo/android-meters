@@ -206,6 +206,15 @@ class Meter : Comparable<Meter> {
         var validToPrice = DateHelper.today
         var validToPayment = DateHelper.today
 
+        var lastFee = 0.0
+        var lastPrice = 0.0
+        var lastPayment = 0.0
+
+        tariffs.sorted().forEach {
+            if (it.hasFee()) lastFee = it.fee else it.lastFee = lastFee
+            if (it.hasPrice()) lastPrice = it.price else it.lastPrice = lastPrice
+            if (it.hasPayment()) lastPayment = it.payment else it.lastPayment = lastPayment
+        }
         tariffs.sortDescending()
         tariffs.forEach {
             if (it.hasFee()) {

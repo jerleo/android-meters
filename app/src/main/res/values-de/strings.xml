@@ -45,7 +45,7 @@
     <string name="new_reading">Neue Ablesung</string>
     <string name="none">Ohne</string>
     <string name="ok">OK</string>
-    <string name="payments">Abschlag</string>
+    <string name="payment">Abschlag</string>
     <string name="plus_1">+1</string>
     <string name="plus_10">+10</string>
     <string name="plus_100">+100</string>
@@ -61,15 +61,16 @@
     <string name="sample_fee">7,89 €</string>
     <string name="sample_meter">123 456 789</string>
     <string name="sample_payment">140 €</string>
-    <string name="sample_price">0,2275 €/kWh</string>
+    <string name="sample_price">0,2275 €</string>
     <string name="sample_unit">kWh</string>
     <string name="sample_year">JJJJ</string>
     <string name="save">Speichern</string>
     <string name="tariff">Tarif</string>
     <string name="tariffs">Tarife</string>
     <string name="total">Gesamt</string>
-    <string name="usage">Verbrauch</string>
-    <string name="unit_price">Verbrauchspreis pro Einheit</string>
+    <string name="units">Einheiten</string>
+    <string name="unit_price">Preis je Einheit</string>
+    <string name="unit_price_short">Preis</string>
     <string name="valid_from">Gülig ab</string>
     <string name="year">Jahr</string>
 

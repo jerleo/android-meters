@@ -16,11 +16,9 @@ internal class AdapterTariff(
     private var tariffs: List<Tariff>
 ) : ArrayAdapter<Tariff>(ctx, textView, tariffs) {
 
-    private val numberFormat = ActivityMain.numberFormat
-    private val currency: String = ActivityMain.currencySymbol
-    private val currencyFormat: String = ActivityMain.currencyFormat
-
-    private val meterUnit by lazy { tariffs.first().meter.unit.toString() }
+    private val number = ActivityMain.numberFormat
+    private val currency: String = ActivityMain.currencyFormat
+    private val currencySymbol: String = ActivityMain.currencySymbol
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var row = convertView
@@ -38,23 +36,23 @@ internal class AdapterTariff(
         }
 
         val tariff = tariffs[position]
-        val unitPrice = tariff.price
-        val monthlyFee = tariff.fee
-        val paymentAmt = tariff.payment
-        var unitPriceStr = ""
-        var monthlyFeeStr = ""
-        var paymentStr = ""
-        if (unitPrice > 0)
-            unitPriceStr = numberFormat.format(unitPrice) + " " + currency + "/" + meterUnit
-        if (monthlyFee > 0) monthlyFeeStr = String.format(currencyFormat, monthlyFee)
-        if (paymentAmt > 0) paymentStr = String.format(currencyFormat, paymentAmt)
+        val strPayment =
+            String.format(currency, if (tariff.payment > 0) tariff.payment else tariff.lastPayment)
+        val strFee = String.format(currency, if (tariff.fee > 0) tariff.fee else tariff.lastFee)
+        var strPrice = number.format(if (tariff.price > 0) tariff.price else tariff.lastPrice)
+        strPrice += " $currencySymbol"
 
         val holder = row!!.tag as ViewHolder
         holder.apply {
             begin.text = DateHelper.formatMedium(tariff.dateFrom)
-            fee.text = monthlyFeeStr
-            price.text = unitPriceStr
-            payment.text = paymentStr
+
+            fee.text = strFee
+            price.text = strPrice
+            payment.text = strPayment
+
+            fee.alpha = if (tariff.hasFee()) 1.0f else 0.5f
+            price.alpha = if (tariff.hasPrice()) 1.0f else 0.5f
+            payment.alpha = if (tariff.hasPayment()) 1.0f else 0.5f
         }
         return row
     }

@@ -49,40 +49,40 @@ internal class AdapterBillHistory(
             row = inflater.inflate(R.layout.bill_history_row, parent, false)
 
             val holder = ViewHolder().apply {
-                yearView = row.findViewById(R.id.bill_year)
-                usageView = row.findViewById(R.id.bill_usage)
-                feesView = row.findViewById(R.id.bill_fees)
-                costsView = row.findViewById(R.id.bill_costs)
-                paymentsView = row.findViewById(R.id.bill_payments)
-                balanceView = row.findViewById(R.id.bill_balance)
-                textColor = balanceView.currentTextColor
+                year = row.findViewById(R.id.bill_year)
+                usage = row.findViewById(R.id.bill_usage)
+                fees = row.findViewById(R.id.bill_fees)
+                costs = row.findViewById(R.id.bill_costs)
+                payments = row.findViewById(R.id.bill_payments)
+                balance = row.findViewById(R.id.bill_balance)
+                textColor = balance.currentTextColor
             }
             row.tag = holder
         }
 
         val holder = row!!.tag as ViewHolder
         holder.apply {
-            yearView.text = values[position][Constants.YEAR]
-            usageView.text = values[position][Constants.USAGE]
-            feesView.text = values[position][Constants.FEE]
-            costsView.text = values[position][Constants.COSTS]
-            paymentsView.text = values[position][Constants.PAYMENT]
-            balanceView.text = values[position][Constants.BALANCE]
-            if (balanceView.text.contains("-"))
-                balanceView.setTextColor(Color.RED)
+            year.text = values[position][Constants.YEAR]
+            usage.text = values[position][Constants.USAGE]
+            fees.text = values[position][Constants.FEE]
+            costs.text = values[position][Constants.COSTS]
+            payments.text = values[position][Constants.PAYMENT]
+            balance.text = values[position][Constants.BALANCE]
+            if (balance.text.contains("-"))
+                balance.setTextColor(Color.RED)
             else
-                balanceView.setTextColor(holder.textColor)
+                balance.setTextColor(holder.textColor)
         }
         return row
     }
 
     internal class ViewHolder {
-        lateinit var yearView: TextView
-        lateinit var usageView: TextView
-        lateinit var feesView: TextView
-        lateinit var costsView: TextView
-        lateinit var paymentsView: TextView
-        lateinit var balanceView: TextView
+        lateinit var year: TextView
+        lateinit var usage: TextView
+        lateinit var fees: TextView
+        lateinit var costs: TextView
+        lateinit var payments: TextView
+        lateinit var balance: TextView
         var textColor = 0
     }
 }

@@ -33,6 +33,7 @@ class ListTariff : ListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.tariff_list)
         registerForContextMenu(listView)
 
         val bundle = this.intent.extras

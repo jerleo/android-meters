@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="@string/reading_date"
+            android:text="@string/valid_from"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="@string/meter_count"
+            android:text="@string/payment"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="@string/delta"
+            android:text="@string/fees"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
@@ -47,7 +47,7 @@
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="@string/costs_short"
+            android:text="@string/unit_price_short"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 

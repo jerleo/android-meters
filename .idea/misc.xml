@@ -34,7 +34,9 @@
         <entry key="app/src/main/res/layout/reading_list.xml" value="0.41757246376811596" />
         <entry key="app/src/main/res/layout/reading_row.xml" value="0.33" />
         <entry key="app/src/main/res/layout/reading_row_header.xml" value="0.3582427536231884" />
-        <entry key="app/src/main/res/layout/tariff_row.xml" value="0.20314083080040526" />
+        <entry key="app/src/main/res/layout/tariff.xml" value="0.4046875" />
+        <entry key="app/src/main/res/layout/tariff_list.xml" value="0.3138586956521739" />
+        <entry key="app/src/main/res/layout/tariff_row.xml" value="0.33" />
         <entry key="app/src/main/res/menu/action_main.xml" value="0.35794871794871796" />
         <entry key="app/src/main/res/menu/action_tariff_list.xml" value="0.3648148148148148" />
         <entry key="app/src/main/res/menu/context_bill_list.xml" value="0.3648148148148148" />

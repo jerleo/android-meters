@@ -14,6 +14,9 @@ class Tariff : Comparable<Tariff> {
     var fee = 0.0
     var price = 0.0
     var payment = 0.0
+    var lastFee = 0.0
+    var lastPrice = 0.0
+    var lastPayment = 0.0
 
     lateinit var meter: Meter
     lateinit var dateFrom: LocalDate

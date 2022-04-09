@@ -45,7 +45,7 @@
     <string name="new_reading">New Reading</string>
     <string name="none">None</string>
     <string name="ok">OK</string>
-    <string name="payments">Payments</string>
+    <string name="payment">Payment</string>
     <string name="plus_1">+1</string>
     <string name="plus_10">+10</string>
     <string name="plus_100">+100</string>
@@ -61,7 +61,7 @@
     <string name="sample_fee">7.89 $</string>
     <string name="sample_meter">123 456 789</string>
     <string name="sample_payment">140 $</string>
-    <string name="sample_price">0.2275 $/kWh</string>
+    <string name="sample_price">0.2275 $</string>
     <string name="sample_unit">kWh</string>
     <string name="sample_usage" translatable="false">250 kWh</string>
     <string name="sample_year">YYYY</string>
@@ -70,7 +70,8 @@
     <string name="tariffs">Tariffs</string>
     <string name="total">Total</string>
     <string name="unit_price">Unit Price</string>
-    <string name="usage">Usage</string>
+    <string name="unit_price_short">Price</string>
+    <string name="units">Units</string>
     <string name="valid_from">Valid From</string>
     <string name="year">Year</string>
     <string name="zero" translatable="false">0</string>
