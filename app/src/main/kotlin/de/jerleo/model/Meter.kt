@@ -277,7 +277,7 @@ class Meter : Comparable<Meter> {
                     Constants.NUMBER -> meter.number = reader.nextString()
                     Constants.UNIT -> {
                         val unitString = reader.nextString()
-                        meter.unit = Unit.values().find { unitString == it.toString() } ?: Unit.M3
+                        meter.unit = Unit.entries.find { unitString == it.toString() } ?: Unit.M3
                     }
                     Constants.PRIOR -> meter.priorNumber = reader.nextString()
                     Constants.TARIFFS -> meter.tariffs = Tariff.import(reader)

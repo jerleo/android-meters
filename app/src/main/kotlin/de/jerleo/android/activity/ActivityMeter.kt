@@ -93,7 +93,7 @@ class ActivityMeter : FragmentActivity(), View.OnClickListener {
             home.save(meter.apply {
                 this.number = it.number.text.toString().trim { it <= ' ' }
                 this.name = it.name.text.toString().trim { it <= ' ' }
-                this.unit = Meter.Unit.values()[it.unit.selectedItemPosition]
+                this.unit = Meter.Unit.entries.toTypedArray()[it.unit.selectedItemPosition]
                 this.prior = it.home.meter(it.prior.selectedItem as String)
                 this.home = it.home
             })

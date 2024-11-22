@@ -1,3 +1,5 @@
+[![Build](https://github.com/jerleo/android-meters/actions/workflows/android_build.yml/badge.svg)](https://github.com/jerleo/android-meters/actions/workflows/android_build.yml)
+
 # android-meters
 Keep track of energy consumption
 

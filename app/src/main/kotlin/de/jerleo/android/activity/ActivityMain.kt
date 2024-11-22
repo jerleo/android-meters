@@ -113,7 +113,7 @@ class ActivityMain : AppCompatActivity(), OnListChangedListener {
 
     private val exportActivity =
         registerForActivityResult(StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK)
+            if (it.resultCode == RESULT_OK)
                 it.data?.run { Exporter(this.data!!).execute() }
         }
 
@@ -129,7 +129,7 @@ class ActivityMain : AppCompatActivity(), OnListChangedListener {
 
     private val importActivity =
         registerForActivityResult(StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK)
+            if (it.resultCode == RESULT_OK)
                 it.data?.run { Importer().prepare(this.data!!) }
         }
 

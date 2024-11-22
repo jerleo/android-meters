@@ -48,7 +48,7 @@ class Database private constructor(context: Context) :
         groupBy: String?,
         having: String?,
         orderBy: String?
-    ): Cursor = readableDatabase.query(table, columns, where, args, groupBy, having, orderBy)
+    ): Cursor = readableDatabase.query(table!!, columns, where, args, groupBy, having, orderBy)
 
     fun rebuild(database: SQLiteDatabase?) {
         val db = database ?: readableDatabase
