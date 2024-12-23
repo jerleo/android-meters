@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/menu_action_filter">
+
+        <SwitchPreferenceCompat
+            app:key="hide_meters"
+            app:title="@string/hide_meters" />
+
+        <SeekBarPreference
+            android:defaultValue="180"
+            android:max="360"
+            app:dependency="hide_meters"
+            app:key="reading_days"
+            app:min="30"
+            app:seekBarIncrement="10"
+            app:showSeekBarValue="true"
+            app:summary="@string/day_selection"
+            app:title="@string/reading" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

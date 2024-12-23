@@ -6,7 +6,6 @@
     android:versionName="1.0">
 
     <application
-        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
@@ -22,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ActivityBill" />
+        <activity android:name=".activity.ActivityFilter" />
         <activity android:name=".activity.ActivityMeter" />
         <activity android:name=".activity.ActivityReading" />
         <activity android:name=".activity.ActivityTariff" />
@@ -29,7 +29,6 @@
         <activity android:name=".list.ListBillHistory" />
         <activity android:name=".list.ListReading" />
         <activity android:name=".list.ListTariff" />
-
     </application>
 
 </manifest>

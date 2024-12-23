@@ -13,16 +13,19 @@
     <string name="confirm_import">Bestehende Einträge werden durch den Import ersetzt. Weiter?</string>
     <string name="costs">Verbrauchskosten</string>
     <string name="costs_short">Kosten</string>
+    <string name="day_selection">Tage seit letzter Ablesung</string>
     <string name="delete">Löschen</string>
     <string name="delete_message">Der Eintrag wird gelöscht.</string>
     <string name="delta">Delta</string>
     <string name="description">Beschreibung</string>
     <string name="export_success">Export erfolgreich</string>
     <string name="fees">Gebühren</string>
+    <string name="hide_meters">Zähler ausblenden</string>
     <string name="history">Historie</string>
     <string name="import_success">Import erfolgreich</string>
     <string name="import_title">Importieren</string>
     <string name="menu_action_export">Exportieren</string>
+    <string name="menu_action_filter">Filtern</string>
     <string name="menu_action_import">Importieren</string>
     <string name="menu_action_new_bill">Neue Abrechnung</string>
     <string name="menu_action_new_meter">Neuer Zähler</string>
@@ -68,9 +71,9 @@
     <string name="tariff">Tarif</string>
     <string name="tariffs">Tarife</string>
     <string name="total">Gesamt</string>
-    <string name="units">Einheiten</string>
     <string name="unit_price">Preis je Einheit</string>
     <string name="unit_price_short">Preis</string>
+    <string name="units">Einheiten</string>
     <string name="valid_from">Gülig ab</string>
     <string name="year">Jahr</string>
 

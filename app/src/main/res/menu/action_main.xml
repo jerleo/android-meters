@@ -23,4 +23,10 @@
         android:orderInCategory="100"
         android:title="@string/menu_action_import" />
 
+    <item
+        android:id="@+id/action_filter"
+        android:enabled="true"
+        android:orderInCategory="100"
+        android:title="@string/menu_action_filter" />
+
 </menu>
